@@ -30,7 +30,4 @@ class ShortestPrefixAlgorithmSpec extends AnyFlatSpec with Matchers with ScalaCh
   }
 
   private implicit def noShrink[T]: Shrink[T] = Shrink.shrinkAny
-
-
-
 }

@@ -28,3 +28,11 @@ lat,lng,geohash,uniq
 - Clever but justified usage of tailored data structures
 - Command line helpers and user friendlyness
 - Building instructions if required
+
+
+##  Implementation notes:
+
+- To run: `sbt run <file>`. Example `sbt run test_points.txt`
+- Implementation is thread-safe and can be easily paralyzed (thanks to ZIO)
+- To find unique prefix sorted strings are used by checking neighbors
+- The Domain can be used in REST API or Kafka Event Processor

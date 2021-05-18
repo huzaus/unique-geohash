@@ -21,7 +21,7 @@ class GeohashStorageSpec extends AnyFlatSpec with Matchers with ScalaCheckProper
     unsafeRun(GeohashStorage.get()) shouldBe empty
   }
 
-  it should "return put and get coordinates" in {
+  it should "put and get coordinates" in {
     forAll(EntityGen.coordinates) { coordinates =>
       val scenario = for {
         _ <- GeohashStorage.put(coordinates)
@@ -32,7 +32,7 @@ class GeohashStorageSpec extends AnyFlatSpec with Matchers with ScalaCheckProper
     }
   }
 
-  it should "return put and get many coordinates" in {
+  it should "put and get many coordinates" in {
     forAll(Gen.listOf(EntityGen.coordinates)){ list =>
       val scenario = for {
         _ <- ZIO.foreach_(list)(GeohashStorage.put)
