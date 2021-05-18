@@ -1,5 +1,6 @@
-package com.shuzau.geohash.domain.out
+package com.shuzau.geohash.domain.in
 
+import com.shuzau.geohash.domain.in.ShortestPrefixAlgorithm.uniquePrefixes
 import com.softwaremill.diffx.scalatest.DiffMatcher
 import org.scalacheck.{Gen, Shrink}
 import org.scalatest.flatspec.AnyFlatSpec
@@ -30,24 +31,6 @@ class ShortestPrefixAlgorithmSpec extends AnyFlatSpec with Matchers with ScalaCh
 
   private implicit def noShrink[T]: Shrink[T] = Shrink.shrinkAny
 
-  def commonPrefixSizeLength(left: String, right: String): Int = {
-    left.lazyZip(right).takeWhile { case (a, b) => a == b }.size
-  }
 
-  def uniquePrefixes(strings: SortedSet[String]): List[String] = {
-    val origin = strings.toList
-    origin
-      .lazyZip(
-        origin
-          .prepended("")
-          .appended("")
-          .sliding(2)
-          .map(list => commonPrefixSizeLength(list.head, list.last))
-          .sliding(2)
-          .map(_.max + 1)
-          .toList
-      )
-      .map { case (string, length) => string.substring(0, Math.min(length, string.length)) }
-  }
 
 }

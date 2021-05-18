@@ -18,7 +18,7 @@ class GeohashStorageSpec extends AnyFlatSpec with Matchers with ScalaCheckProper
   behavior of "GeohashStorage"
 
   it should "return empty set for empty storage" in {
-    unsafeRun(GeohashStorage.get()) shouldBe SortedMap.empty
+    unsafeRun(GeohashStorage.get()) shouldBe empty
   }
 
   it should "return put and get coordinates" in {
