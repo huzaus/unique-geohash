@@ -63,7 +63,7 @@ object Util {
     if (entries.size == 2) {
       for {
         latitude  <- parseDouble(entries.head)
-        longitude <- parseDouble(entries.head)
+        longitude <- parseDouble(entries.last)
       } yield Coordinates(Latitude(latitude), Longitude(longitude))
     } else {
       Left(s"Wrong $line format, expected 'latitude,longitude'")

@@ -12,7 +12,7 @@ private[domain] object ShortestPrefixAlgorithm {
       .lazyZip(
         origin
           .prepended("")                                             // "", "aaa" , "abb", "abc"
-          .appended("")                                              // "", "aaa" , "abb", "abc"
+          .appended("")                                              // "", "aaa" , "abb", "abc", ""
           .sliding(2)                                                // ("", "aaa"), ("aaa", "abb"), ("abb", "abc"), ("abc", "")
           .map(list => commonPrefixSizeLength(list.head, list.last)) // "", "a", "ab", ""
           .sliding(2)                                                // ("", "a"), ("a", "ab"), ("ab", "")

@@ -38,7 +38,12 @@ class UniqueGeohashModuleSpec extends AnyFlatSpec with Matchers with ScalaCheckP
         saved <- UniqueGeohashModule.get()
       } yield saved
 
-      unsafeRun(scenario).map(_.coordinates) should contain allElementsOf list
+      val result = unsafeRun(scenario)
+      result.map(_.coordinates) should contain allElementsOf list
+      val hashes = result.map(_.geohash)
+      result.map(_.prefix).foreach{ prefix =>
+        hashes.filter(_.value.startsWith(prefix)) should have size 1
+      }
     }
   }
 
